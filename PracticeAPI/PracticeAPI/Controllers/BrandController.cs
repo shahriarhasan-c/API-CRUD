@@ -15,17 +15,17 @@ namespace PracticeAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Brand>>> GetBrands()
+        public async Task<IActionResult> GetBrands()
         {
             if (_db.Brands == null)
             {
                 return NotFound();
             }
-            return await _db.Brands.ToListAsync();
+            return Ok(await _db.Brands.ToListAsync());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Brand>> GetBrandById(int id)
+        public async Task<IActionResult> GetBrandById(int id)
         {
             if (_db.Brands == null)
             {
@@ -40,11 +40,40 @@ namespace PracticeAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Brand>> PostBrand(Brand brand)
+        public async Task<IActionResult> PostBrand(Brand brand)
         {
             _db.Brands.Add(brand);
             await _db.SaveChangesAsync();
             return CreatedAtAction(nameof(GetBrandById), new { id = brand.Id }, brand);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult>PutBrand(int id, Brand brand)
+        {
+            if(id != brand.Id)
+            {
+                return BadRequest();
+            }
+            _db.Entry(brand).State = EntityState.Modified;
+            try
+            {
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BrandAvailable(id))
+                {
+                    return NotFound();
+                }
+                else
+                    throw;
+            }
+            return Ok();
+        }
+
+        private bool BrandAvailable(int id)
+        {
+            return (_db.Brands?.Any(x => x.Id == id)).GetValueOrDefault();
         }
     }
 }
