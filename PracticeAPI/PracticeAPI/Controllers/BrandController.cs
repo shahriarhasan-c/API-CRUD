@@ -48,9 +48,9 @@ namespace PracticeAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult>PutBrand(int id, Brand brand)
+        public async Task<IActionResult> PutBrand(int id, Brand brand)
         {
-            if(id != brand.Id)
+            if (id != brand.Id)
             {
                 return BadRequest();
             }
@@ -74,6 +74,23 @@ namespace PracticeAPI.Controllers
         private bool BrandAvailable(int id)
         {
             return (_db.Brands?.Any(x => x.Id == id)).GetValueOrDefault();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteBrand(int id)
+        {
+            if (_db.Brands == null)
+            {
+                return NotFound();
+            }
+            var brand = await _db.Brands.FindAsync(id);
+            if (brand == null)
+            {
+                return NotFound();
+            }
+            _db.Brands.Remove(brand);
+            await _db.SaveChangesAsync();
+            return Ok(); ;
         }
     }
 }
