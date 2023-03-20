@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PracticeAPI.Models;
 
@@ -26,14 +25,14 @@ namespace PracticeAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Brand>>GetBrandById(int id)
+        public async Task<ActionResult<Brand>> GetBrandById(int id)
         {
-            if(_db.Brands == null)
+            if (_db.Brands == null)
             {
                 return NotFound();
             }
             var brand = await _db.Brands.FindAsync(id);
-            if(brand == null)
+            if (brand == null)
             {
                 return NotFound();
             }
@@ -41,11 +40,11 @@ namespace PracticeAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Brand>>PostBrand(Brand brand)
+        public async Task<ActionResult<Brand>> PostBrand(Brand brand)
         {
             _db.Brands.Add(brand);
             await _db.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetBrandById), new { id =brand.Id},brand);
+            return CreatedAtAction(nameof(GetBrandById), new { id = brand.Id }, brand);
         }
     }
 }

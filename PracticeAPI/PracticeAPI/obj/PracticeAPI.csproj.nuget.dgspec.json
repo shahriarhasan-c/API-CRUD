@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\PracticeAPI\\PracticeAPI\\PracticeAPI.csproj": {}
+    "F:\\APICRUD\\API-CRUD\\PracticeAPI\\PracticeAPI\\PracticeAPI.csproj": {}
   },
   "projects": {
-    "F:\\PracticeAPI\\PracticeAPI\\PracticeAPI.csproj": {
+    "F:\\APICRUD\\API-CRUD\\PracticeAPI\\PracticeAPI\\PracticeAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\PracticeAPI\\PracticeAPI\\PracticeAPI.csproj",
+        "projectUniqueName": "F:\\APICRUD\\API-CRUD\\PracticeAPI\\PracticeAPI\\PracticeAPI.csproj",
         "projectName": "PracticeAPI",
-        "projectPath": "F:\\PracticeAPI\\PracticeAPI\\PracticeAPI.csproj",
+        "projectPath": "F:\\APICRUD\\API-CRUD\\PracticeAPI\\PracticeAPI\\PracticeAPI.csproj",
         "packagesPath": "C:\\Users\\Shahriar Hasan\\.nuget\\packages\\",
-        "outputPath": "F:\\PracticeAPI\\PracticeAPI\\obj\\",
+        "outputPath": "F:\\APICRUD\\API-CRUD\\PracticeAPI\\PracticeAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Shahriar Hasan\\AppData\\Roaming\\NuGet\\NuGet.Config",
