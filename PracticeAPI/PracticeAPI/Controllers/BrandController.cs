@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PracticeAPI.Models;
 
@@ -9,9 +10,11 @@ namespace PracticeAPI.Controllers
     public class BrandController : ControllerBase
     {
         private readonly BrandContext _db;
-        public BrandController(BrandContext db)
+        private readonly IMapper _mapper;
+        public BrandController(BrandContext db,IMapper mapper)
         {
             _db = db;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -48,33 +51,22 @@ namespace PracticeAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> PutBrand(int id, Brand brand)
+        public async Task<IActionResult> PutBrand(int id, BrandDto brand)
         {
-            if (id != brand.Id)
+            var data = _db.Brands.FirstOrDefault(x=> x.Id == id);
+            if (data == null)
             {
-                return BadRequest();
+                return NotFound();
             }
-            _db.Entry(brand).State = EntityState.Modified;
-            try
+            _mapper.Map(brand, data);
+            _db.Brands.Update(data);
+            if (await _db.SaveChangesAsync() > 0)
             {
-                await _db.SaveChangesAsync();
+                return Ok(brand);
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BrandAvailable(id))
-                {
-                    return NotFound();
-                }
-                else
-                    throw;
-            }
-            return Ok();
+            return BadRequest();
         }
 
-        private bool BrandAvailable(int id)
-        {
-            return (_db.Brands?.Any(x => x.Id == id)).GetValueOrDefault();
-        }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBrand(int id)

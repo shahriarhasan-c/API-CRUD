@@ -172,3 +172,5 @@ F:\APICRUD\API-CRUD\PracticeAPI\PracticeAPI\obj\Debug\net6.0\refint\PracticeAPI.
 F:\APICRUD\API-CRUD\PracticeAPI\PracticeAPI\obj\Debug\net6.0\PracticeAPI.pdb
 F:\APICRUD\API-CRUD\PracticeAPI\PracticeAPI\obj\Debug\net6.0\PracticeAPI.genruntimeconfig.cache
 F:\APICRUD\API-CRUD\PracticeAPI\PracticeAPI\obj\Debug\net6.0\ref\PracticeAPI.dll
+F:\APICRUD\API-CRUD\PracticeAPI\PracticeAPI\bin\Debug\net6.0\AutoMapper.dll
+F:\APICRUD\API-CRUD\PracticeAPI\PracticeAPI\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
